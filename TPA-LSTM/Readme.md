@@ -35,3 +35,18 @@ The example loads some sample data (stemming from a medicinal application - deta
 ## Known Issues
 
 Training of the `TPALSTM` layer is very slow, probably due to the use of `Zygote.Buffer` to pool the hidden states.
+
+
+## Benchmark Results
+
+### GPU
+```julia-repl
+[ Info: GPU Training
+38.149 s (45249158 allocations: 1.76 GiB)
+```
+
+### CPU
+```julia-repl
+[ Info: CPU Training
+9.018 s (20843829 allocations: 2.48 GiB)
+```

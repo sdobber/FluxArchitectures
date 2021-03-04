@@ -28,3 +28,18 @@ The example loads some sample data (stemming from a medicinal application - deta
 ## Known Issues
 
 Training of the `DARNN` layer is very slow, probably due to the use of `Zygote.Buffer` in the encoder.
+
+
+## Benchmark Results
+
+### GPU
+```julia-repl
+[ Info: GPU Training
+49.626 s (121524473 allocations: 3.47 GiB)
+```
+
+### CPU
+```julia-repl
+[ Info: CPU Training
+37.321 s (568533249 allocations: 29.56 GiB)
+```

@@ -16,3 +16,18 @@ The neural net consists of the following elements:
 ## Example File
 
 The example loads some sample data (stemming from a medicinal application - details will not be disclosed) and fits an LSTnet to the input features.
+
+
+## Benchmark Results
+
+### GPU
+```julia-repl
+[ Info: GPU Training
+7.022 s (13012644 allocations: 349.47 MiB)
+```
+
+### CPU
+```julia-repl
+[ Info: CPU Training
+582.849 ms (1552305 allocations: 181.54 MiB)
+```

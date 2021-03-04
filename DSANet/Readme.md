@@ -25,3 +25,18 @@ The example loads some sample data and fits an DSANet to the input features.
 * The `MaxPool` pooling layers in the temporal convolution mechanisms can cause the model output to become `NaN` during training. This is not captured yet. Changing the model parameters or the random seed before training can help.
 
 * The original model transposes some internal matrices, using `Flux.batched_transpose`. As there is no adjoint defined yet for this operation in `Zygote.jl`, we use `permutedims` instead.
+
+
+## Benchmark Results
+
+### GPU
+```julia-repl
+[ Info: GPU Training
+1.557 s (450555 allocations: 18.81 MiB)
+```
+
+### CPU
+```julia-repl
+[ Info: CPU Training
+2.441 s (373674 allocations: 2.33 GiB)
+```

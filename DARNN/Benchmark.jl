@@ -1,11 +1,11 @@
-## Example for using DARNN
+## Benchmark script
 
 # Make sure all the required packages are available
 cd(@__DIR__)
 using Pkg; Pkg.activate("."); Pkg.instantiate()
 
 @info "Loading packages"
-using Flux, BSON, Plots
+using Flux, BSON, BenchmarkTools
 include("../shared/Sequentialize.jl")
 include("../data/dataloader.jl")
 include("DARNN.jl")
@@ -32,21 +32,13 @@ function loss(x, y)
     return Flux.mse(model(x), y')
 end
 
-# Callback for plotting the training
-cb = function ()
-    Flux.reset!(model)
-    pred = model(input)' |> cpu
-    Flux.reset!(model)
-    p1 = plot(pred, label="Predict")
-    p1 = plot!(cpu(target), label="Data", title="Loss $(loss(input, target))")
-    display(plot(p1))
-end
-
 # Training loop
-@info "Start loss" loss = loss(input, target)
-@info "Starting training"
-Flux.train!(loss, Flux.params(model),Iterators.repeated((input, target), 20),
-            ADAM(0.007), cb=cb)
+@info "GPU Training"
+@btime Flux.train!(loss, Flux.params(model),Iterators.repeated((input, target), 5),
+            ADAM(0.007))
 
-@info "Finished"
-@info "Final loss" loss = loss(input, target)
+@info "CPU Training"
+input, target = cpu(input), cpu(target)
+model = DARNN(inputsize, encodersize, decodersize, poollength, 1)
+@btime Flux.train!(loss, Flux.params(model),Iterators.repeated((input, target), 5),
+            ADAM(0.007))
