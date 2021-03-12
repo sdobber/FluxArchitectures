@@ -29,12 +29,7 @@ The stacked version of a number of `LSTM` cells is obtained by feeding the hidde
 
 ## Example File
 
-The example loads some sample data (stemming from a medicinal application - details will not be disclosed) and fits a TPA-LSTM network to the input features. Whereas the network works for larger datasets, it will just fit the mean for the sample data.
-
-
-## Known Issues
-
-Training of the `TPALSTM` layer is very slow, probably due to the use of `Zygote.Buffer` to pool the hidden states.
+The example loads some sample data and fits a TPA-LSTM network to the input features. Whereas the network works for larger datasets, it will just fit the mean for the sample data.
 
 
 ## Benchmark Results
@@ -50,3 +45,4 @@ Training of the `TPALSTM` layer is very slow, probably due to the use of `Zygote
 [ Info: CPU Training
 9.018 s (20843829 allocations: 2.48 GiB)
 ```
+

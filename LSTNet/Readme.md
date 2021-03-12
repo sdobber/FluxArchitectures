@@ -15,7 +15,7 @@ The neural net consists of the following elements:
 
 ## Example File
 
-The example loads some sample data (stemming from a medicinal application - details will not be disclosed) and fits an LSTnet to the input features.
+The example loads some sample data and fits an LSTnet to the input features.
 
 
 ## Benchmark Results
@@ -31,3 +31,4 @@ The example loads some sample data (stemming from a medicinal application - deta
 [ Info: CPU Training
 582.849 ms (1552305 allocations: 181.54 MiB)
 ```
+

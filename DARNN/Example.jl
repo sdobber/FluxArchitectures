@@ -6,6 +6,7 @@ using Pkg; Pkg.activate("."); Pkg.instantiate()
 
 @info "Loading packages"
 using Flux, BSON, Plots
+using SliceMap, JuliennedArrays
 include("../shared/Sequentialize.jl")
 include("../data/dataloader.jl")
 include("DARNN.jl")
@@ -45,7 +46,7 @@ end
 # Training loop
 @info "Start loss" loss = loss(input, target)
 @info "Starting training"
-Flux.train!(loss, Flux.params(model),Iterators.repeated((input, target), 20),
+Flux.train!(loss, Flux.params(model),Iterators.repeated((input, target), 10),
             ADAM(0.007), cb=cb)
 
 @info "Finished"
